@@ -1,6 +1,9 @@
 package com.pratham.journalApp.entity;
 
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -9,11 +12,10 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 @Document(collection = "journal_entries")
+@Data //@Data is Equivalent to @Getter @Setter @RequiredArgsConstructor @ToString @EqualsAndHashCode.
 public class JournalEntry {
     @Id
     private ObjectId id;
-
-
 
     private String title;
 
@@ -21,7 +23,8 @@ public class JournalEntry {
 
     private LocalDateTime date;
 
-    public LocalDateTime getDate() {
+    // Using The Lombok annotation @Getter, @Setter it reduces to write getter, setter and constructor explicitly
+/*    public LocalDateTime getDate() {
         return date;
     }
 
@@ -51,5 +54,5 @@ public class JournalEntry {
 
     public void setContent(String content) {
         this.content = content;
-    }
+    }*/
 }
