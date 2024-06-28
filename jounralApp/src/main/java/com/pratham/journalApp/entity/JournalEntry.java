@@ -1,22 +1,24 @@
 package com.pratham.journalApp.entity;
 
 
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Document(collection = "journal_entries")
-@Data //@Data is Equivalent to @Getter @Setter @RequiredArgsConstructor @ToString @EqualsAndHashCode.
+//@Data is Equivalent to @Getter @Setter @RequiredArgsConstructor @ToString @EqualsAndHashCode.
+@Data
+// In @Data RequiredArgsConstructor in it there is no NoArgsConstructor,
+// this NoArgsConstructor required in deserialization.(deserialization)-> means json to pojo
+@NoArgsConstructor
 public class JournalEntry {
     @Id
     private ObjectId id;
-
+    @NonNull
     private String title;
 
     private String content;
