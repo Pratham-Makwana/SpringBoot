@@ -1,6 +1,8 @@
 package com.pratham.LearnSpring;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,26 +17,26 @@ public class ChallengeController {
     }
 
     @GetMapping("/challenge")
-    public List<Challenge> getAllChallenges() {
-        return challengeService.getAllChallenge();
+    public ResponseEntity<List<Challenge>> getAllChallenges() {
+        return new ResponseEntity<>(challengeService.getAllChallenge(), HttpStatus.OK);
     }
 
     @PostMapping("/challenges")
-    public String addChallenge(@RequestBody Challenge challenge) {
+    public ResponseEntity<String> addChallenge(@RequestBody Challenge challenge) {
         Boolean isChallengeAdded = challengeService.addChallenge(challenge);
         if (isChallengeAdded)
-            return "Challenge is added Successfully";
+            return new ResponseEntity<>("Challenge is added Successfully", HttpStatus.OK);
         else
-            return "Challenge is non added";
+            return new ResponseEntity<>("Challenge is non added", HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/challenge/{month}")
-    public Challenge getChallenge(@PathVariable String month) {
+    public ResponseEntity<Challenge> getChallenge(@PathVariable String month) {
         Challenge challenge = challengeService.getChallenge(month);
         if (challenge != null) {
-            return challenge;
+            return new ResponseEntity<>(challenge, HttpStatus.OK);
         }
-        return null;
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 
