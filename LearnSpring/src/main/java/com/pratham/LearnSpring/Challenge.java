@@ -1,11 +1,18 @@
 package com.pratham.LearnSpring;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
 import java.lang.annotation.Documented;
 
 
+@Entity
 public class Challenge {
 
+    @Id
     private Long id;
+    @Column(name = "challengeMonth")
     private String month;
     private String description;
 
