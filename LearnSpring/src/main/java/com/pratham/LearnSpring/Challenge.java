@@ -21,6 +21,7 @@ public class Challenge {
         this.month = month;
         this.description = description;
     }
+
     public Challenge(){
         super();
     }
@@ -46,4 +47,6 @@ public class Challenge {
     public void setDescription(String description){
         this.description = description;
     }
+
+
 }
