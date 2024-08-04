@@ -27,6 +27,8 @@ public class User {
     @NonNull
     private String password;
 
+    private List<String> roles;
+
     @DBRef // It is referencing to the journalEntry, like in sql called as a foreign key.
     private List<JournalEntry> journalEntries = new ArrayList<>();
 
